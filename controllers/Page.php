@@ -184,6 +184,13 @@ class Page extends Controller
             return $this->actionError(400);
         }
 
+        // Redirect random item
+        if (isset($_GET['ref']) && $_GET['ref']) {
+            $q = $db->query("SELECT * FROM product ORDER BY RAND()");
+            $product = $q->fetch(PDO::FETCH_ASSOC);
+            header('Location: ' . $product['url']);
+        }
+
         // Get banners
         $banners = [];
         $q = $db->query("SELECT src FROM banner ORDER BY RAND()");
