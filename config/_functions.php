@@ -33,7 +33,10 @@ function isTableEmpty($table = false)
 
     // Get all tables
     if (!$table) {
-        $q = $db->query("select table_name from information_schema.tables WHERE table_schema = 'blog_builder_empty'");
+        // Get DB name
+        $database = $db->query('select database()')->fetchColumn();
+        $q = $db->prepare("select table_name from information_schema.tables WHERE table_schema = :database");
+        $q->execute(['database' => $database]);
         $table = $q->fetchAll(PDO::FETCH_NUM);
 
         foreach ($table as $key => $tb) {
