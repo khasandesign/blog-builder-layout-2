@@ -66,7 +66,6 @@ function isTableEmpty($table = false)
  */
 function updateFavicon() {
     file_put_contents('./assets/images/symbol.svg', $GLOBALS['website']['symbol']);
-    chmod('./assets/images/symbol.svg', 0777);
 }
 
 /**

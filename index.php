@@ -20,8 +20,6 @@ $footer = component('layout/footer');
 // Base functions to execute
 $url = getFullUrl();
 updateFavicon();
-generateRobotsTxt();
-generateSitemap();
 ?>
 
 <!doctype html>
