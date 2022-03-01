@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.5",
+        "icamys/php-sitemap-generator": "^4.3"
+    }
+}
