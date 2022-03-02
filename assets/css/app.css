@@ -733,7 +733,7 @@ hr:not([size]) {
 }
 
 .article.article-sm .article-title {
-  padding-right: 40px;
+  padding-right: 80px;
 }
 
 .article .read-more {

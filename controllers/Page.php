@@ -58,14 +58,14 @@ class Page extends Controller
         array_push($articles[0]['tags'], 'new');
 
         // Get videos
-        $q = $db->query("SELECT v.embed_url, c.id as category_id, c.name as category_name FROM video v JOIN category c on v.category_id = c.id LIMIT 6");
+        $q = $db->query("SELECT v.embed_url, c.id as category_id, c.name as category_name FROM video v JOIN category c on v.category_id = c.id");
         $videos = $q->fetchAll(PDO::FETCH_ASSOC);
 
         // Build feed
         $feed = [];
 
         // Section: New Article
-        $feed['new_article']['section_title'] = 'New Article';
+        $feed['new_article']['section_title'] = 'New article';
         $feed['new_article']['articles'] = [$articles[0]];
         $feed['new_article']['videos'] = [];
         $feed['new_article']['section_id'] = str_replace(' ', '-', strtolower($feed['new_article']['section_title']));
@@ -75,7 +75,7 @@ class Page extends Controller
             if (!isset($feed[$article['category_id']]['articles'])) {
                 $feed[$article['category_id']]['articles'] = [];
             }
-            $feed[$article['category_id']]['section_title'] = $article['category_name'];
+            $feed[$article['category_id']]['section_title'] = ucfirst(strtolower($article['category_name']));
             array_push($feed[$article['category_id']]['articles'], $article);
 
             // Set id
@@ -85,8 +85,9 @@ class Page extends Controller
             if (!isset($feed[$video['category_id']]['videos'])) {
                 $feed[$video['category_id']]['videos'] = [];
             }
-            $feed[$video['category_id']]['section_title'] = $video['category_name'];
-            array_push($feed[$video['category_id']]['videos'], $video);
+            if (count($feed[$video['category_id']]['videos']) < 2) {
+                array_push($feed[$video['category_id']]['videos'], $video);
+            }
         }
 
         // Meta
@@ -146,20 +147,20 @@ class Page extends Controller
         $feed = [];
 
         // Section: Most Read
-        $feed['most_read']['section_title'] = 'Most Read';
+        $feed['most_read']['section_title'] = 'Most read';
         $feed['most_read']['articles'] = [end($articles)];
         end($videos);
         $feed['most_read']['videos'] = [prev($videos)];
         $feed['most_read']['section_id'] = str_replace(' ', '-', strtolower($feed['most_read']['section_title']));
 
         // Section: More Articles
-        $feed['more_articles']['section_title'] = 'More Articles';
+        $feed['more_articles']['section_title'] = 'More articles';
         $feed['more_articles']['articles'] = array_slice($articles, 0, -1);
         $feed['more_articles']['videos'] = array_slice($videos, 0, -1);
         $feed['more_articles']['section_id'] = str_replace(' ', '-', strtolower($feed['more_articles']['section_title']));
 
         // Section: Watch also
-        $feed['watch_also']['section_title'] = 'Watch Also';
+        $feed['watch_also']['section_title'] = 'Watch also';
         $feed['watch_also']['articles'] = [];
         $feed['watch_also']['videos'] = [end($videos)];
         $feed['watch_also']['section_id'] = str_replace(' ', '-', strtolower($feed['watch_also']['section_title']));

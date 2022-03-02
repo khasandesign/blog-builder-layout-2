@@ -4,7 +4,7 @@ require "config/_base_query.php";
 require "controllers/Page.php";
 
 // Validate DB
-if (!isTableEmpty()) {
+if (!isTableEmpty(['website', 'article', 'tag', 'video', 'category'])) {
     echo 'Please first of all fill up all DB tables with minimum content. Thanks!';
     return false;
 }

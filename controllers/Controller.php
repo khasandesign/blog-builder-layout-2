@@ -100,10 +100,8 @@ class Controller
     /**
      * Extract text-in IDs and replace them with HTML template filled of data
      * @param $text
-     * @param $wrap_pattern string Pattern for determining IDs' wraps - E.g <strong>/{{.*}}/</strong> for {{ID}}
+     * @param $wrap_pattern - Pattern for determining IDs' wraps - E.g <strong>/{{.*}}/</strong> for {{ID}}
      * @param $db
-     * @param $table
-     * @param $index_key
      * @return string
      */
     public function insertProduct($text, $wrap_pattern, $db) {
@@ -144,6 +142,8 @@ class Controller
             }
             $paragraphs[] = $par;
         }
-        return implode($paragraphs);
+        // Hide not matched anchors
+        $result = preg_replace('/{{.*?}}/', '', implode($paragraphs));
+        return preg_replace('/<p[^>]*><\\/p[^>]*>/', '', $result);
     }
 }
