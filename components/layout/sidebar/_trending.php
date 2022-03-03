@@ -26,8 +26,7 @@ array_walk($articles, function (&$a) {
             <a href="/article?id=<?= $article['id'] ?>">
                 <p class="article-title subheading"><?= $article['title'] ?></p>
             </a>
-            <p class="article-description"><?= substr($article['content'], 0, 92) ?>... <a
-                        href="/article?id=<?= $article['id'] ?>" class="read-more">Read more</a></p>
+            <?= substr($article['content'], 0, 92) ?>... <a href="/article?id=<?= $article['id'] ?>" class="read-more">Read more</a>
         </div>
         <?php
     } ?>

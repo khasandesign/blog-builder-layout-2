@@ -60,7 +60,28 @@ updateFavicon();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        <?php
+        <?php // Link fonts
+        $font_headline_cdn = $GLOBALS['website']['font_headline'];
+        $font_body_cdn = $GLOBALS['website']['font_body'];
+
+        $font_headline = parse_url($font_headline_cdn);
+        parse_str($font_headline['query'], $font_headline);
+        $font_headline = explode(':', $font_headline['family'])[0];
+
+        $font_body = parse_url($font_body_cdn);
+        parse_str($font_body['query'], $font_body);
+        $font_body = explode(':', $font_body['family'])[0];
+        ?>
+        @import url('<?= $font_headline_cdn ?>');
+        @import url('<?= $font_body_cdn ?>');
+        * {
+            font-family: <?= $font_body ?>, serif;
+        }
+        .extra-bold, h1, h2, h3, h4, h5, h6, .subheading, .header .description, .picked-item .picked-item-info .picked-item-title, .brand .blog-name {
+            font-family: <?= $font_headline ?>, serif;
+        }
+
+        <?php // Extract css code
         $css = file_get_contents('assets/css/app.css');
         echo $css;
 

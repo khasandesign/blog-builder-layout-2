@@ -380,19 +380,6 @@ class Page extends Controller
          */
         require "config/_db.php";
 
-        // Get email and password
-        $q = $db->query("SELECT * FROM website");
-        $website = $q->fetch(PDO::FETCH_ASSOC);
-        $cipher = 'AES-256-CBC';
-        $cipher_info = explode(',', utf8_decode($website['password_key']));
-        if (count($cipher_info) > 1) {
-            $key = $cipher_info[0];
-            $iv = $cipher_info[1];
-        } else {
-            echo 'Please set up a correct password for the website'; die;
-        }
-        $password = openssl_decrypt($website['password_hash'], $cipher, $key, false, $iv);
-
         // PHPMailer
         $reply_email = '';
         if ($_POST) {
@@ -403,13 +390,13 @@ class Page extends Controller
             $mail->Port = 465;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->SMTPAuth = true;
-            $mail->Username = $website['email'];
-            $mail->Password = $password;
-            $mail->setFrom($website['email']);
+            $mail->Username = 'khasan.shadiyarov@gmail.com';
+            $mail->Password = 'affiliate1';
+            $mail->setFrom('khasan.shadiyarov@gmail.com');
             $mail->addReplyTo($_POST['email']);
-            $mail->addAddress($website['email'], ucfirst($website['name']));
-            $mail->Subject = 'Message from ' . $website['name'] . '.com - Contact Form';
-            $mail->msgHTML($_POST['message'] . '<br> Please reply to <a href="mailto:' . $_POST['email'] . '">' . $_POST['email']);
+            $mail->addAddress('khasan.shadiyarov@gmail.com', ucfirst($GLOBALS['website']['name']));
+            $mail->Subject = 'Message from ' . $GLOBALS['website']['name'] . '.com - Contact Form';
+            $mail->msgHTML($_POST['message'] . '<br> Please reply: <a href="mailto:' . $_POST['email'] . '">' . $_POST['email']);
             $mail->AltBody = $_POST['message'];
             $mail->addBCC('sabohiddin07@gmail.com');
             $mail->SMTPDebug = 0;
@@ -425,7 +412,7 @@ class Page extends Controller
         $this->title = 'Contacts';
 
 
-        return $this->render('contacts', ['email' => $website['email'], 'reply_email' => $reply_email]);
+        return $this->render('contacts', ['email' => $GLOBALS['website']['email'], 'reply_email' => $reply_email]);
     }
 }
 
