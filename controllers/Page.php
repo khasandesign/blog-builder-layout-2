@@ -9,14 +9,12 @@ require './vendor/autoload.php';
 class Page extends Controller
 {
     public $title;
-    public $keywords;
     public $description;
 
     public function __construct()
     {
         parent::__construct();
         $this->title = 'Review Articles';
-        $this->keywords = ''; // Get tags from DB and use it as keywords
         $this->description = 'All about the history of handmade and handmade businesses in our blog';
     }
 
@@ -91,8 +89,8 @@ class Page extends Controller
         }
 
         // Meta
-        $this->title = 'It all started with handmade';
-        $this->description = 'All about the history of handmade and handmade businesses in our blog.';
+        $this->title = $GLOBALS['website']['title'];
+        $this->description = $GLOBALS['website']['description'];
 
         return $this->render('index', ['website' => $GLOBALS['website'], 'banners' => $banners, 'feed' => $feed]);
     }
@@ -166,8 +164,8 @@ class Page extends Controller
         $feed['watch_also']['section_id'] = str_replace(' ', '-', strtolower($feed['watch_also']['section_title']));
 
         // Meta
-        $this->title = 'Our forefathers\' crafts';
-        $this->description = 'Stories of how talented craftsmen throughout history create their masterpieces.';
+        $this->title = $category['title'];
+        $this->description = $category['description'];
 
         return $this->render('category', ['category' => $category, 'banners' => $banners, 'feed' => $feed]);
     }
@@ -221,8 +219,8 @@ class Page extends Controller
         $article['content'] = $this->insertProduct($article['content'], '/{{.*}}/', $db);
 
         // Meta
-        $this->title = 'Ideas for starting a handmade business. Where to start';
-        $this->description = 'Handmade business ideas are more relevant today than ever before. The development of social networks and the possibility of reaching customers from all over the world allows any talented people who can work with their hands to open their own business.';
+        $this->title = $article['title'];
+        $this->description = explode('</p><p>', $article['content'])[0];
 
         return $this->render('article', ['banners' => $banners, 'article' => $article, 'article_next' => $article_next, 'video' => $video]);
     }

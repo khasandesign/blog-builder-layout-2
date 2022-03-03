@@ -510,6 +510,7 @@ footer .copywrite {
   height: 500px;
   overflow: hidden;
   background-position: center;
+  background-size: cover;
 }
 
 .bg-wrap .gradient-bg .color, .bg-wrap .gradient-bg .gradient, .bg-wrap .bg .color, .bg-wrap .bg .gradient {

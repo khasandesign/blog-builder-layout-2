@@ -29,9 +29,9 @@ updateFavicon();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= $page->title ?></title>
+    <title><?= strip_tags($page->title) ?></title>
 
-    <meta name="description" content="<?= $GLOBALS['website']['description'] ?>">
+    <meta name="description" content="<?= strip_tags($page->description) ?>">
     <meta name="keywords" content="<?= $GLOBALS['tags'] ?>">
     <meta name="image" content="<?= $url ?>/assets/images/symbol.svg">
 
