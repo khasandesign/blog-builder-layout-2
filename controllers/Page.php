@@ -69,6 +69,7 @@ class Page extends Controller
         $feed['new_article']['section_id'] = str_replace(' ', '-', strtolower($feed['new_article']['section_title']));
 
         // Section: Articles & Videos (by Categories)
+        $articles = array_reverse($articles);
         foreach ($articles as $article) {
             if (!isset($feed[$article['category_id']]['articles'])) {
                 $feed[$article['category_id']]['articles'] = [];
