@@ -88,11 +88,17 @@ class Page extends Controller
             }
         }
 
+        // Get target for 2nd part of the sidebar
+        $sidebar_second = '';
+        if ($feed[2]) {
+            $sidebar_second = $feed[2]['section_id'];
+        }
+
         // Meta
         $this->title = $GLOBALS['website']['title'];
         $this->description = $GLOBALS['website']['description'];
 
-        return $this->render('index', ['website' => $GLOBALS['website'], 'banners' => $banners, 'feed' => $feed]);
+        return $this->render('index', ['website' => $GLOBALS['website'], 'banners' => $banners, 'feed' => $feed, 'sidebar_second' => $sidebar_second]);
     }
 
     public function actionCategory()

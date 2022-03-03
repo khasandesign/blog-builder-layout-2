@@ -19,7 +19,7 @@ $sidebar = component('layout/sidebar', [
             'sections' => ['search_tag', 'hot_deals', 'interesting']
         ],
         [
-            'target' => 'handmade-business',
+            'target' => $this->sidebar_second,
             'sections' => ['trending', 'info']
         ]
     ],
