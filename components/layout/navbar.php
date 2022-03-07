@@ -11,9 +11,6 @@ $url = null;
 <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid d-flex d-md-block">
         <a href="/" class="brand">
-        <span class="snh">
-          <img src="assets/images/s&h.svg" alt="S&H">
-        </span>
             <span class="blog-name">
                 <span class="symbol"><?= ucfirst($GLOBALS['website']['symbol']) ?></span><?= ucfirst($GLOBALS['website']['name']) ?>
             </span>

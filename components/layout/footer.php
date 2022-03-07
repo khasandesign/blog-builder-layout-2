@@ -8,9 +8,6 @@
     <div class="container">
         <div class="col-xl-8 mx-auto">
             <a href="/" class="brand">
-          <span class="snh">
-            <img src="assets/images/s&h.svg" alt="S&H">
-          </span>
                 <span class="blog-name">
                     <span class="symbol"><?= ucfirst($GLOBALS['website']['symbol']) ?></span><?= ucfirst($GLOBALS['website']['name']) ?>
                 </span>
