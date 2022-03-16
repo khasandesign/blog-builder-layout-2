@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label>Message:</label>
                                 <textarea name="message" class="form-control"
-                                          placeholder="Describe your problem or anwer a question..." rows="4"
+                                          placeholder="Describe your problem or ask a question..." rows="4"
                                           type="text" required></textarea>
                             </div>
                             <div class="form-group">
