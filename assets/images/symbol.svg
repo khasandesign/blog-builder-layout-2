@@ -1,7 +1,9 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="1" width="31" height="31" rx="3" fill="#004877"/>
-<rect x="4" y="3" width="11" height="11" rx="1.5" fill="#ED3340"/>
-<rect x="4" y="17" width="11" height="11" rx="1.5" fill="#F3EAD8"/>
-<rect x="18" y="3" width="11" height="11" rx="1.5" fill="#F3EAD8"/>
-<rect x="18" y="17" width="11" height="11" rx="1.5" fill="#F3EAD8"/>
+<circle cx="16" cy="16" r="16" fill="#004D77"/>
+<mask id="mask0_4513_5785" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+<circle cx="16" cy="16" r="16" fill="#645536"/>
+</mask>
+<g mask="url(#mask0_4513_5785)">
+<path d="M3.29336 12.6376L2.15303 27.3234L-2.95374 8.26465L24.6694 0.863056L30.622 23.0787L15.3492 27.1711L12.7692 32.2174L10.3489 23.1844L22.8594 19.8322L19.7501 8.228L3.29336 12.6376Z" fill="#FADC3E"/>
+</g>
 </svg>

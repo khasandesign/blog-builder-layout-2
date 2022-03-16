@@ -3,7 +3,7 @@
         <div class="col-xl-6 col-lg-8 offset-xl-2">
             <section id="intro">
                 <h3 class="section-heading mt-0">Privacy Policy</h3>
-                <p class="par-4">PRIVACY POLICY IMPORTANT: BY USING sabsautoparts LTD'S ("COMPANY" OR "WE") SERVICES,
+                <p class="par-4">PRIVACY POLICY IMPORTANT: BY USING <?= strtoupper($GLOBALS['website']['name'])?> LTD'S ("COMPANY" OR "WE") SERVICES,
                     INCLUDING WITHOUT LIMITATION ITS CHATBOT OR ANY OF ITS APPLICATIONS OR WEBSITES (THE "SERVICES") YOU
                     CONSENT TO THE TERMS AND CONDITIONS OF THIS PRIVACY POLICY AND CONSENT THAT ALL PERSONAL DATA (AS
                     DEFINED UNDER REGULATION (EU) 2016/679 (GENERAL DATA PROTECTION REGULATION) ("PII") THAT YOU SUBMIT
