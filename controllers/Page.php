@@ -138,9 +138,6 @@ class Page extends Controller
 
             // Explode tags
             $a['tags'] = explode(',', $a['tags']);
-
-            // Insert products
-            $a['content'] = $this->insertProduct($a['content'], '/{{.*}}/', $db);
         });
 
         // Get videos
@@ -210,6 +207,11 @@ class Page extends Controller
         $article = $q->fetch(PDO::FETCH_ASSOC);
         $article['tags'] = explode(',', $article['tags']);
 
+        // Get products
+        $q = $db->prepare("SELECT * FROM product WHERE article_id = :article_id");
+        $q->execute(['article_id' => $article['id']]);
+        $products = $q->fetchAll(PDO::FETCH_ASSOC);
+
         // Get next article
         $q = $db->query("SELECT a.id, a.title, a.content, c.id as category_id, c.name as category_name, GROUP_CONCAT(t.tag) tags FROM article a INNER JOIN article_tag at ON a.id = at.article_id INNER JOIN tag t ON t.id = at.tag_id INNER JOIN category c on a.category_id = c.id GROUP BY a.id ORDER BY RAND() LIMIT 1");
         $article_next = $q->fetch(PDO::FETCH_ASSOC);
@@ -223,13 +225,11 @@ class Page extends Controller
         $q = $db->query("SELECT * FROM video ORDER BY RAND() LIMIT 1");
         $video = $q->fetch(PDO::FETCH_ASSOC);
 
-        $article['content'] = $this->insertProduct($article['content'], '/{{.*}}/', $db);
-
         // Meta
         $this->title = $article['title'];
         $this->description = explode('</p><p>', $article['content'])[0];
 
-        return $this->render('article', ['banners' => $banners, 'article' => $article, 'article_next' => $article_next, 'video' => $video]);
+        return $this->render('article', ['banners' => $banners, 'article' => $article, 'article_next' => $article_next, 'video' => $video, 'products' => $products]);
     }
 
     public function actionSearch()

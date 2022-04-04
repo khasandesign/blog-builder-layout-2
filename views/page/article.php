@@ -23,7 +23,7 @@ $sidebar = component('layout/sidebar', [
         </div>
         <div class="col-xl-6 col-lg-8">
             <div class="feed">
-                <section id="article-1">
+                <section id="article-<?= $this->article['id'] ?>">
                     <div class="article">
                         <a href="/category?id=<?= $this->article['category_id'] ?>" class="par-2 semi-bold article-category"><?= $this->article['category_name'] ?></a>
                         <a href="">
@@ -37,6 +37,30 @@ $sidebar = component('layout/sidebar', [
                             } ?>
                         </div>
                         <div class="article-content"><?= $this->article['content'] ?></div>
+                    </div>
+                </section>
+                <section id="article-<?= $this->article['id'] ?>-products">
+                    <div class="picked-item-card">
+                        <?php foreach ($this->products as $product) {
+                            ?>
+                            <div class="item-content">
+                                <div class="item-overlay"></div>
+                                <div class="item-info">
+                                    <a href="amazon.com" target="_blank" class="tag active">Our pick</a>
+                                    <a href="amazon.com" target="_blank">
+                                        <h6 class="item-title"><?= $product['name'] ?></h6>
+                                    </a>
+                                    <a href="amazon.com" target="_blank">
+                                        <p class="item-brand"><?= $product['brand'] ?></p>
+                                    </a>
+                                    <p class="item-description"><?= $product['description'] ?></p>
+                                </div>
+                                <div class="item-image">
+                                    <?= $product['image'] ?>
+                                </div>
+                            </div>
+                            <?php
+                        } ?>
                     </div>
                 </section>
                 <section id="see-also">

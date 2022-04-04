@@ -1113,6 +1113,17 @@ form .btn[type=submit] {
   color: #104e31;
 }
 
+.picked-item-card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.picked-item-card .item-content:not(:first-child) {
+  border-top: 1px solid rgba(var(--accent),0.12);
+}
+.picked-item-card .item-content .item-overlay {
+  border-radius: 0;
+}
+
 /* Added manually */
 @media (min-width: 1400px) {
   .header.header-lg .title {

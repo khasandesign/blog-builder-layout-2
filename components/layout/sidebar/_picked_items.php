@@ -11,19 +11,8 @@ $url = null;
 
 $products = [];
 if (isset($_GET['id']) && $page_name === '/article') {
-    // Get article's content
-    $q = $db->query("SELECT content FROM article WHERE id = {$_GET['id']}");
-    $article_content = $q->fetch(PDO::FETCH_ASSOC)['content'];
-
-    // Extract ids
-    $re = '/(?<={{).*?(?=}})/s';
-    preg_match_all($re, $article_content, $matches);
-    $ids = $matches[0];
-
-    // Get products
-    $in = str_repeat('?,', count($ids) - 1) . '?';
-    $q = $db->prepare("SELECT * FROM product WHERE id IN ($in)");
-    $q->execute($ids);
+    $q = $db->prepare("SELECT * FROM product WHERE article_id = :article_id");
+    $q->execute(['article_id' => $_GET['id']]);
     $products = $q->fetchAll(PDO::FETCH_ASSOC);
 } else {
     echo 'ERROR: Please use "Picked items" sidebar section only on article page';
